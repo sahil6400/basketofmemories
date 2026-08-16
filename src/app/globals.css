@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f5efe8;
+  --cream-2: #fbf8f5;
+  --paper: #fffdf9;
+  --blush: #d9b9a5;
+  --blush-light: #f1e1d4;
+  --rose: #9d6a55;
+  --rose-dark: #7b5140;
+  --sage: #566c55;
+  --sage-light: #dde7d7;
+  --brown: #2d2a28;
+  --brown-soft: #5f5753;
+  --butter: #d3a75f;
+  --butter-light: #f1dfb1;
+  --stone: #3a3d41;
+  --stone-soft: #6d7277;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-paper: var(--paper);
+  --color-blush: var(--blush);
+  --color-blush-light: var(--blush-light);
+  --color-rose: var(--rose);
+  --color-rose-dark: var(--rose-dark);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-brown: var(--brown);
+  --color-brown-soft: var(--brown-soft);
+  --color-butter: var(--butter);
+  --color-butter-light: var(--butter-light);
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Quicksand", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, var(--cream) 0%, #f9f5f1 100%);
+  color: var(--brown);
+  font-family: "Quicksand", sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: "Fredoka", sans-serif;
+}
+
+/* ---------- Stitch underline (signature detail) ---------- */
+.stitch-underline {
+  position: relative;
+  display: inline-block;
+}
+.stitch-underline::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: -6px;
+  height: 6px;
+  background-image: radial-gradient(circle, currentColor 1.6px, transparent 1.7px);
+  background-size: 11px 6px;
+  background-repeat: repeat-x;
+  opacity: 0.55;
+}
+
+/* ---------- Scalloped crochet-edge divider ---------- */
+.scallop-edge {
+  display: block;
+  width: 100%;
+  height: 22px;
+  line-height: 0;
+}
+.scallop-down {
+  transform: scaleY(1);
+}
+.scallop-up {
+  transform: scaleY(-1);
+}
+
+/* ---------- Yarn-loop card border ---------- */
+.yarn-card {
+  position: relative;
+  border-radius: 26px;
+  border: 2px dashed rgba(92, 68, 51, 0.25);
+  transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.yarn-card:hover {
+  transform: translateY(-6px) rotate(-0.4deg);
+  box-shadow: 0 18px 34px -14px rgba(92, 68, 51, 0.35);
+  border-color: rgba(214, 87, 122, 0.55);
+}
+
+/* ---------- Floating bob animation ---------- */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-bob {
+  animation: bob 4.5s ease-in-out infinite;
+}
+@keyframes bob-slow {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(-14px) rotate(-1deg); }
+}
+.animate-bob-slow {
+  animation: bob-slow 6.5s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.2s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.7s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Button styles ---------- */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 18px -8px rgba(37, 211, 102, 0.6);
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: #1fbd5a;
+  box-shadow: 0 12px 24px -8px rgba(37, 211, 102, 0.75);
+}
+.btn-whatsapp:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 100%);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 18px -8px rgba(125, 81, 64, 0.55);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--rose-dark) 0%, var(--rose) 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+::selection {
+  background: var(--blush-light);
+  color: var(--brown);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
